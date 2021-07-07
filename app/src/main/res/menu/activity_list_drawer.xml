@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/notes"
+            android:icon="@drawable/ic_baseline_notes_24"
+            android:title="@string/notes"/>
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/settings"/>
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="@string/logout" />
+    </group>
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_outline_share_24"
+                android:title="@string/share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_baseline_contact_support_24"
+                android:title="@string/support" />
+        </menu>
+    </item>
+
+</menu>
