@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JungleAndroidCourse">
         <activity
-            android:name=".NoteActivity"
-            android:parentActivityName=".ListActivity"/>
-        <activity
             android:name=".ListActivity"
             android:theme="@style/ListActivityStyle"/>
         <activity android:name=".MainActivity">

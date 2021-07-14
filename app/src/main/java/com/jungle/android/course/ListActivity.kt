@@ -17,7 +17,6 @@ import com.jungle.android.course.model.ToDoModel
 
 class ListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var rvNotes: RecyclerView
     private lateinit var drawer: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var navigationHeaderText: TextView
@@ -26,7 +25,6 @@ class ListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-        rvNotes = findViewById(R.id.rvNotes)
         drawer = findViewById(R.id.drawer)
         navigationView = findViewById(R.id.navView)
 
@@ -40,7 +38,7 @@ class ListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val colors = listOf(R.color.light_gray, R.color.light_blue, R.color.purple, R.color.yellow)
 
-        val notes = listOf(
+        val notes = arrayListOf(
             NoteModel(
                 title = "Shopping",
                 description = "Buy food for dinner",
@@ -133,8 +131,12 @@ class ListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             )
         )
 
-        rvNotes.layoutManager = GridLayoutManager(this, 2)
-        rvNotes.adapter = NotesAdapter(notes)
+        val fragment = NoteListFragment.newInstance(notes)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flContainer, fragment)
+            .commit()
 
         navigationHeaderText = navigationView.getHeaderView(0).findViewById(R.id.tvNotesHeading)
         navigationHeaderText?.text = getString(R.string.notes_counter, notes.size)
@@ -157,16 +159,25 @@ class ListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Notes", Toast.LENGTH_SHORT).show()
             }
             R.id.settings -> {
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.flContainer, SettingsFragment.newInstance())
+                    .commit()
             }
             R.id.logout -> {
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_share -> {
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.flContainer, ShareFragment.newInstance())
+                    .commit()
             }
             R.id.nav_send -> {
-                Toast.makeText(this, "Support", Toast.LENGTH_SHORT).show()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.flContainer, SupportFragment.newInstance())
+                    .commit()
             }
         }
         drawer.closeDrawer(GravityCompat.START)
